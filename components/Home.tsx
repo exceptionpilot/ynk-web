@@ -339,6 +339,15 @@ function FeatureList({ items, offset = 0 }: { items: { title: string; text: stri
   );
 }
 
+function CalcTeaser({ href, text, cta }: { href: string; text: string; cta: string }) {
+  return (
+    <div className="calc-teaser reveal">
+      <p>{text}</p>
+      <Link href={href} className="btn btn-sm btn-primary"><span className="glitch">{cta}</span><span className="arrow" aria-hidden>→</span></Link>
+    </div>
+  );
+}
+
 /* -------------------------------------------------------------- Organizers */
 export function Organizers({ t, locale }: P) {
   const o = t.organizers;
@@ -354,6 +363,7 @@ export function Organizers({ t, locale }: P) {
           <FeatureList items={o.benefits} />
           <p className="block-title">{o.requirementsTitle}</p>
           <FeatureList items={o.requirements} />
+          <CalcTeaser href={`/${locale}/rechner?als=organizer`} text={o.calcCta} cta={t.calc.cta} />
         </div>
         <div className="form-panel reveal" style={{ position: "sticky", top: 96 }}>
           <h3 className="display h3">{o.formTitle}</h3>
@@ -379,6 +389,7 @@ export function PartnerStudios({ t, locale }: P) {
           <FeatureList items={p.benefits} />
           <p className="block-title">{p.requirementsTitle}</p>
           <FeatureList items={p.requirements} />
+          <CalcTeaser href={`/${locale}/rechner?als=studio`} text={p.calcCta} cta={t.calc.cta} />
         </div>
         <div className="form-panel reveal" style={{ position: "sticky", top: 96 }}>
           <h3 className="display h3">{p.formTitle}</h3>

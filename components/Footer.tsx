@@ -26,6 +26,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary["footer"] 
             <ul>
               <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
               <li><Link href={`${base}/aftercare`}>Aftercare</Link></li>
+              <li><Link href={`${base}/rechner`}>{t.calculator}</Link></li>
             </ul>
           </div>
           <div>

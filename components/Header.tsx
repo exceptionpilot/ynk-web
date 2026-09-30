@@ -79,6 +79,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
           {links.map((l) => (
             <a key={l.href} href={l.href} className="m-link" onClick={() => setOpen(false)}>{l.label}</a>
           ))}
+          <Link href={`${home}/rechner`} className="m-link">{t.calculator}</Link>
           <Link href={`${home}/aftercare`} className="m-link">{t.aftercare}</Link>
           <Link href={`${home}/portal`} className="m-link">{t.portal}</Link>
           <a href={`${home}#veranstalter`} className="btn btn-primary" onClick={() => setOpen(false)}>{t.book}</a>

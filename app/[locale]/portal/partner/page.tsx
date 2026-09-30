@@ -71,6 +71,11 @@ export default async function PartnerPortal({ params }: PageProps<"/[locale]/por
   const contact = (
     <a href={`mailto:${site.email}`} className="link-arrow">{p.contactTeam} →</a>
   );
+  const calcLink = (as: "studio" | "organizer") => (
+    <p style={{ margin: "0 0 24px" }}>
+      <Link href={`/${locale}/rechner?als=${as}`} className="link-arrow">{p.calcCta} →</Link>
+    </p>
+  );
 
   if (session.role === "studio") {
     const d = studioData[session.uid];
@@ -85,6 +90,7 @@ export default async function PartnerPortal({ params }: PageProps<"/[locale]/por
           <Kpi label={p.kpiRevenue} value={fmtMoney(d.kpis.revenue, locale)} />
           <Kpi label={p.kpiRating} value={`${d.kpis.rating.toLocaleString(locale)} ★`} />
         </div>
+        {calcLink("studio")}
         <div className="dash-grid">
           <div style={{ display: "grid", gap: 24, alignContent: "start" }}>
             <EventsPanel list={d.events} t={p} locale={locale} action={contact} />
@@ -133,6 +139,7 @@ export default async function PartnerPortal({ params }: PageProps<"/[locale]/por
         <Kpi label={p.kpiTattoos} value={fmtNumber(d.kpis.tattoos, locale)} />
         <Kpi label={p.kpiShare} value={fmtMoney(d.kpis.share, locale)} />
       </div>
+      {calcLink("organizer")}
       <div className="dash-grid">
         <div style={{ display: "grid", gap: 24, alignContent: "start" }}>
           <EventsPanel

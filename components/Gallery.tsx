@@ -33,16 +33,16 @@ export function Gallery({ items, studios, t }: { items: GalleryItem[]; studios: 
       <div className="filters">
         <div className="filter-group" role="group" aria-label={t.filterStudio}>
           <span className="mono">{t.filterStudio}</span>
-          <button className="chip" aria-pressed={studio === "all"} onClick={() => setStudio("all")}>{t.all}</button>
+          <button className="chip" data-group="studio" data-value="all" aria-pressed={studio === "all"} onClick={() => setStudio("all")}>{t.all}</button>
           {usedStudios.map((s) => (
-            <button key={s.id} className="chip" aria-pressed={studio === s.id} onClick={() => setStudio(s.id)}>{s.name}</button>
+            <button key={s.id} className="chip" data-group="studio" data-value={s.id} aria-pressed={studio === s.id} onClick={() => setStudio(s.id)}>{s.name}</button>
           ))}
         </div>
         <div className="filter-group" role="group" aria-label={t.filterStyle}>
           <span className="mono">{t.filterStyle}</span>
-          <button className="chip" aria-pressed={style === "all"} onClick={() => setStyle("all")}>{t.all}</button>
+          <button className="chip" data-group="style" data-value="all" aria-pressed={style === "all"} onClick={() => setStyle("all")}>{t.all}</button>
           {usedStyles.map((s) => (
-            <button key={s} className="chip" aria-pressed={style === s} onClick={() => setStyle(s)}>{t.styles[s]}</button>
+            <button key={s} className="chip" data-group="style" data-value={s} aria-pressed={style === s} onClick={() => setStyle(s)}>{t.styles[s]}</button>
           ))}
         </div>
       </div>
@@ -52,7 +52,7 @@ export function Gallery({ items, studios, t }: { items: GalleryItem[]; studios: 
       ) : (
         <div className="gallery-grid">
           {filtered.map((item, i) => (
-            <button key={item.id} className="g-item" onClick={() => setActive(i)} aria-label={`${t.open}: ${item.title}`}>
+            <button key={item.id} className="g-item" data-studio={item.studioId} data-style={item.style} data-title={item.title} data-by={studioName(item.studioId)} onClick={() => setActive(i)} aria-label={`${t.open}: ${item.title}`}>
               {item.src ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={item.src} alt={item.title} loading="lazy" />
